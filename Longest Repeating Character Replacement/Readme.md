@@ -34,27 +34,8 @@ Explanation: Replace one 'A' in the middle to get "AABBBBA". The longest substri
 
 Find the length of the longest substring containing the same letter you can get after performing at most `k` character replacements.
 
----
 
-## 🚀 Optimized Python Solution (Sliding Window)
 
-```python
-from collections import defaultdict
-
-def characterReplacement(s: str, k: int) -> int:
-    freq = defaultdict(int)
-    max_count = 0
-    left = 0
-    res = 0
-
-    for right in range(len(s)):
-        freq[s[right]] += 1
-        max_count = max(max_count, freq[s[right]])
-
-        # window size - max repeating char count > k ⇒ shrink window
-        while (right - left + 1) - max_count > k:
-            freq[s[left]] -= 1
-            left += 1
 
         res = max(res, right - left + 1)
 
